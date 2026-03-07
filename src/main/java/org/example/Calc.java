@@ -13,7 +13,7 @@ public class Calc {
         //2) findMul 가장뒤에있는 * , /로 수식 파싱해 넘기기 - lastIndexOf()
         //3) findAdd 로 식 넘기기
         Calc calc= new Calc();
-        return calc.intoBracket("("+exp+")");
+        return calc.intoBracket("("+exp.replace(" ","")+")");
 
     }
 
