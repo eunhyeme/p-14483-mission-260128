@@ -70,9 +70,20 @@ public class Calc {
 
     }
     public int findAdd(String exp){
+        //t13에서 단항식이 출현...
+        //다행인건 단항식에는 +-밖에 안쓰여서 수정할게 많이 없다는거...
+        //단항연산자가 좌항일때
+            // 2--3 <-이런식으로걸림
+            //sol) 연산자가 서로 앞뒤로 붙어있으면 앞에 있는걸 연산자 취급하도록 수정
+
+         //단항연산자가 우항일때
+            // ()-3 좌항이 없는 상태에서 calculate에 들어가려함
+            //sol) - 가 0이면 단항으로 넘기게
+
         int operatorIndex=Math.max(exp.lastIndexOf('+'),exp.lastIndexOf('-'));
 
-        if(operatorIndex!=-1) { //+ 또는 - 연산자가 있으면
+        if(operatorIndex>0) { //+ 또는 - 연산자가 있으면
+
 
             int leftOperand=findAdd(exp.substring(0,operatorIndex));
             int rightOperand=(int)Integer.parseInt(exp.substring(operatorIndex+1));
