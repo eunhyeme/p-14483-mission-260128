@@ -60,6 +60,8 @@ public class CalcTest {
     @Test
     @DisplayName("10-20+30==20")
     void t9(){
-        assertThat(Calc.run("1-20+30")).isEqualTo(20);
+        assertThat(Calc.run("10-20+30")).isEqualTo(20);
     }
+
+
 }
