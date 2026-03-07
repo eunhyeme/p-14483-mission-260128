@@ -36,7 +36,12 @@ public class Calc {
             //괄호 이전 항들 있으면 덧셈함수 넣어주기
             if(startIndex!=0)
             {
-                bracketLeftOperand=findAdd(exp.substring(startIndex+1,endIndex-2));
+                if(startIndex<2)
+                    bracketLeftOperand=findAdd("0"+exp.substring(0,startIndex-1));
+                else
+                    bracketLeftOperand=findAdd(exp.substring(0,startIndex-1));
+
+                    //마이너스를 붙이고
                 total=evaluateExpr(bracketLeftOperand,total,exp.charAt(startIndex-1));
             }
             //괄호 이후 항들 있으면 덧셈함수 넣어주기
