@@ -37,12 +37,12 @@ public class Calc {
             if(startIndex!=0)
             {
                 bracketLeftOperand=findAdd(exp.substring(startIndex+1,endIndex-2));
-                total+=evaluateExpr(bracketLeftOperand,total,exp.charAt(startIndex-1));
+                total=evaluateExpr(bracketLeftOperand,total,exp.charAt(startIndex-1));
             }
             //괄호 이후 항들 있으면 덧셈함수 넣어주기
             if(endIndex!=exp.length()-1){
                 bracketRightOperand=findAdd(exp.substring(endIndex+2));
-                total+=evaluateExpr(total,bracketRightOperand,exp.charAt(endIndex+1));
+                total=evaluateExpr(total,bracketRightOperand,exp.charAt(endIndex+1));
             }
 
             return total;
