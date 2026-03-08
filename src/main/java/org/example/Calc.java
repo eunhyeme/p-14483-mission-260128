@@ -16,6 +16,19 @@ public class Calc {
         return calc.intoBracket(exp.replace(" ",""));
 
     }
+
+    public boolean isUnary(String exp, int index){
+        //선택한 연산자가 단항 연산자인지 True False를 뱉는 함수
+        // 단항연산자일 조건
+        // -맨앞에 있는 연산자
+        // -다른 연산자와 연달아 있는 연산자
+        if(index<1)
+            //맨앞에 있거나 연산자가 존재하지 않을 때도 필터링가능
+            return true;
+        //연산자가 앞에 붙어있으면
+        return exp.charAt(index - 1) < 48;
+    }
+
     public int findCloseBracket(String exp){
         //열린 브라켓을 포함한 문자열을 넣어주면
         // 그 브라켓의 짝인 닫는 브라켓의 인덱스를 찾아주는 함수
@@ -86,17 +99,6 @@ public class Calc {
 
     }
 
-    boolean isUnary(String exp, int index){
-        //선택한 연산자가 단항 연산자인지 True False를 뱉는 함수
-        // 단항연산자일 조건
-        // -맨앞에 있는 연산자
-        // -다른 연산자와 연달아 있는 연산자
-        if(index<1)
-            //맨앞에 있거나 연산자가 존재하지 않을 때도 필터링가능
-            return true;
-        //연산자가 앞에 붙어있으면
-        return exp.charAt(index - 1) < 48;
-    }
     public int findAdd(String exp){
         //가장 오른쪽에 있는 연산자 찾기
         int operatorIndex=Math.max(exp.lastIndexOf('+'),exp.lastIndexOf('-'));
@@ -129,6 +131,7 @@ public class Calc {
         else return findMul(exp);
 
     }
+
     public int findMul(String exp){
 
         int operatorIndex=Math.max(exp.lastIndexOf('*'),exp.lastIndexOf('/'));
@@ -143,34 +146,6 @@ public class Calc {
         else //연산자가 없으면 - 단항만 남았다는 뜻
             return (int)Integer.parseInt(exp);
     }
-//
-//    public int findMul(String exp){
-//        int operatorIndex=Math.max(exp.lastIndexOf('*'),exp.lastIndexOf('/'));
-//
-//        if(operatorIndex!=-1){ //연산자가 있으면
-//            int leftOperand= findMul(exp.substring(0,operatorIndex));
-//            int rightOperand=findAdd(exp.substring(operatorIndex+1));
-//
-//            return evaluateExpr(leftOperand,rightOperand,exp.charAt(operatorIndex));
-//        }
-//        else return findAdd(exp);
-//
-//    }
-//    public int findAdd(String exp){
-//
-//        int operatorIndex=Math.max(exp.lastIndexOf('+'),exp.lastIndexOf('-'));
-//
-//        if(operatorIndex>0) { //+ 또는 - 연산자가 있으면
-//
-//
-//            int leftOperand=findAdd(exp.substring(0,operatorIndex));
-//            int rightOperand=(int)Integer.parseInt(exp.substring(operatorIndex+1));
-//
-//            return evaluateExpr(leftOperand,rightOperand,exp.charAt(operatorIndex));
-//        }
-//        else //연산자가 없으면 - 단항만 남았다는 뜻
-//            return (int)Integer.parseInt(exp);
-//    }
 
     int evaluateExpr(int num1, int num2, char operator){
         return switch (operator) {
